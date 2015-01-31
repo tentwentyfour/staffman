@@ -1,0 +1,126 @@
+{% extends "base.twig" %}
+
+{% block title %} &middot; {{ person.firstname }}{% endblock %} {# title #}
+
+{% block containertype %}
+    <div class="container-narrow">
+{% endblock %}
+
+{% block container %}
+
+    <div class="row-fluid" id="profile" data-uid="{{ person.uid }}">
+
+        <div class="col-sm-4 col-sm-offset-1">
+            <p><img class="img img-circle" width="100%" src="{{ person.gravatar }}" /></p>
+            <button class="btn btn-primary btn-edit-profile">Edit</button>
+            <button class="btn btn-info btn-alias-modal">Add alias</button>
+            <button class="btn btn-warning btn-reset-password">Reset Password</button>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="input" style="display: none;">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="{{ person.firstname }}" placeholder="First name" data-name="cn">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="{{ person.lastname }}" placeholder="Last name" data-name="sn">
+                </div>
+            </div>
+            <h1>
+                <span class="text">
+                    {{ person.firstname }} {{ person.lastname }}
+                </span>
+            </h1>
+            <h2>
+                <div class="col-sm-12 input" style="display: none;">
+                    <br />
+                    <input type="text" class="form-control" value="{{ person.position }}" placeholder="Position" data-name="position">
+                </div>
+                <span class="text">
+                    {{ person.position }}
+                </span>
+            </h2>
+            <h3>
+                <a href="mailto:{{ person.email }}">{{ person.email }}</a>
+            </h3>
+            <h4><a target="_blank" href="{{ person.sshkey }}">Public SSH key</a></h4>
+
+            <address>
+                <dl class="dl-horizontal">
+                    <dt>
+                        <span class="glyphicon glyphicon-home"></span> <!-- Glyphicons are not working... =( -->
+                    </dt>
+                    <dd>
+                        <div class="input" style="display: none;">
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" value="{{ address.number }}" placeholder="Number" data-name="addressNr">
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" value="{{ address.street }}" placeholder="Street" data-name="addressStreet">
+                            </div>
+                            <br /><br />
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" value="{{ address.zipcode }}" placeholder="Zip" data-name="addressPostcode">
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="{{ address.city }}" placeholder="City" data-name="addressCity">
+                            </div>
+                            <br /><br />
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" value="{{ address.country }}" placeholder="Country" data-name="addressCountry">
+                            </div>
+                        </div>
+                        <span class="text" id="address">
+                            <a target="_blank" href="https://maps.google.com/maps?q={{ address.number }},+{{ address.street }},+{{ address.city }},+{{ address.country }}">
+                                {{ address.number }}, {{ address.street }}<br>
+                                {{ address.zipcode }} {{ address.city }}<br>
+                                {{ address.country }}<br>
+                            </a>
+                        </span>
+                    </dd>
+                </dl>
+            </address>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <span class="glyphicon glyphicon-envelope"></span>
+                </dt>
+                <dd>
+                    <div id="aliases">
+                        {% for alias in aliases %}
+                            <span class="label label-info" id="alias-{{ alias }}">
+                                <span class="glyphicon glyphicon-remove input" style="display: none;" data-alias="{{ alias }}"></span> {{ alias }}</span>
+                        {% endfor %}
+                    </div>
+                </dd>
+            </dl>
+
+        </div>
+
+    </div>
+
+    <div id="modalMailAlias" class="modal" tabindex="-1" role="dialog" aria-labelledby="addMailAliasLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="newAlias" placeholder="enter alias here">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-success btn-add-alias">Save changes</button>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+{% endblock %} {# container #}
+

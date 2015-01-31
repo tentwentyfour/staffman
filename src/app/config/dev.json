@@ -1,0 +1,24 @@
+{
+	"debug" : true,
+	"ldap"	: {
+		"hostname"	:	"127.0.0.1",
+		"port"		:	"3389",
+        "bindDN"    :   "cn=admin,dc=example,dc=com",
+        "password"  :   "ldapadminbindpassword",
+        "baseDN"    :   "ou=People,dc=example,dc=com"
+	},
+    "db.options": {
+        "driver" : "pdo_mysql",
+        "charset" : "utf8",
+        "host" : "localhost",
+        "dbname" : "redmine_default",
+        "user" : "test",
+        "password" : "test"
+    },
+    "swiftmailer.options": {
+        "host"      :   "example.com",
+        "port"      :   "25",
+        "username"  :   "example",
+        "password"  :   "password"
+    }
+}

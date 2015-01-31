@@ -1,0 +1,39 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  display: block;
+  position: static;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.dl-horizontal dt {
+  width: 20px;
+}
+
+.dl-horizontal dd {
+  margin-left: 25px;
+}
+
+li.redmine-commit {
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+
+li.redmine-commit:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,53 @@
+{% extends "base.twig" %}
+
+{% block title %} &middot; Staff{% endblock %} {# title #}
+
+{% block containertype %}
+    <div class="container-narrow">
+{% endblock %}
+
+{% block container %}
+
+    <div class="row-fluid">
+        <div class="col-xs-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> </th>
+                        <th> UID </th>
+                        <th> Name </th>
+                        <th> email </th>
+                        <th> Aliases </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in staff %}
+                        {% if person.active == "TRUE" %} {# we need to check if somebody's account is locked #}
+                            {% set statusColor = 'info' %}
+                        {% else %}
+                            {% set statusColor = 'danger' %}
+                        {% endif %}
+                        <tr>
+                            <td> {{ loop.index }} </td>
+                            <td> <a href="/person/{{ person.uid }}" class="btn btn-xs btn-{{ statusColor }}">More info</a> </td>
+                            <td> {{ person.uid }} </td>
+                            <td> {{ person.cn }} {{ person.sn }} </td>
+                            <td> <a href="mailto:{{ person.mail }}"> {{ person.mail }} </a> </td>
+                            <td>
+                                {% if person.mailalias is defined %}
+
+                                    {% for alias in person.mailalias %}
+                                        <span class="label label-warning">{{ alias }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %} {# container #}
+
