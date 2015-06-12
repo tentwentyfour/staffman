@@ -52,6 +52,7 @@ class PersonControllerProvider implements ControllerProviderInterface {
                                 );
 
             $aliases        =   $userData['mailalias'];
+            $aliases = is_array($aliases) ? $aliases : array($aliases);
             unset($aliases['count']);
             asort($aliases);
 
@@ -88,7 +89,7 @@ class PersonControllerProvider implements ControllerProviderInterface {
         $ctr->post('/{uid}/edit', function( Request $request, $uid ) use ($app) {
 
             // Check wether the request comes from the same person or if the request comes from a team administrator
-            if ( ($uid == $app['uid']) OR ($app['isStaffAdmin'] == '1') ) {
+            if (($uid == $app['uid']) OR ($app['isStaffAdmin'] == '1')) {
 
                 $app['ldap']::setUserAttributes(
                     $uid,
