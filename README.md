@@ -8,3 +8,5 @@ In other words, staffman is yet another PHP-based LDAP interface, focussed on ma
 
 * Handle email aliases per staff member
 * Set and reset passwords
+
+# Test for arcanist/phabricator
